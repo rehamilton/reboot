@@ -180,6 +180,10 @@ body {
   width: 100%;
 }
 
+.card-image img {
+  border: solid;
+}
+
 .card-content {
   width: 100%;
 }
