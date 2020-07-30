@@ -41,10 +41,27 @@ router.delete("/:id", auth, async (req, res) => {
     const myBook = await MyBook.findOne({userId: req.user, _id: req.params.id})
 
     if(!myBook)
-        return res.status(400).json({msg: "No todo found with this id that belongs to current user."})
+        return res.status(400).json({msg: "No book found with this id that belongs to current user."})
     
     const deletedMyBook = await MyBook.findByIdAndDelete(req.params.id)
     res.json(deletedMyBook)
+})
+
+router.post("/:id", auth, async (req, res) => {
+
+    try {
+
+        const myBook = await MyBook.findOneAndUpdate({userId: req.user, _id: req.params.id}, req.body)
+
+        if(!myBook)
+            return res.status(400).json({msg: "No book found with this id that belongs to current user."})
+
+        res.json(myBook)
+
+    }catch(err) {
+        res.status(500).json({error: err.message})
+    }
+
 })
 
 

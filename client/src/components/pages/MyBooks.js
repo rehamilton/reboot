@@ -17,9 +17,8 @@ export default function My() {
     },[userData])
 
     function getBooks() {
-        Axios.get('/api/books/')
+        Axios.get('/api/mybooks/')
         .then((results) =>  {
-            console.log(results)
             setBooks(results.data)
         })
     }
