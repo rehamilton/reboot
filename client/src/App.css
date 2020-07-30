@@ -34,6 +34,7 @@ h1, h2, h3, h4, h5, h5, p, ul, ol {
 
 body {
   font-family: "Special Elite";
+  background-image: url(/Assets/paper.png);
 }
 
 .page {
