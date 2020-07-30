@@ -9,7 +9,7 @@ function BookList({ books, onDelete }) {
 
         <div className = "row">
             <div className = "col m12 s12 l12" >
-                <div className="card-panel">
+                <div className="card-panel blue-grey">
                     <div className = "row flex">
                         {books.map((book) => (
                             <BookListItem key={book.id || book._id} {...book} onDelete={onDelete} />

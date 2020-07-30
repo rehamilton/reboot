@@ -22,7 +22,7 @@ function BookListItem( { _id, id, title, description, link, author, image, posit
                     {onSave && (
                         <a 
                         className="waves-effect waves-light btn" 
-                        onClick={() => {onSave({title, description, image, link, author})}}>
+                        onClick={() => {onSave({_id})}}>
                             Save
                         </a>
                     )}

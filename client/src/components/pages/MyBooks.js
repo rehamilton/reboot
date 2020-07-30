@@ -4,7 +4,6 @@ import {useHistory} from 'react-router-dom'
 import Axios from 'axios'
 import BookList from '../layout/BookList'
 import PageTitle from '../layout/PageTitle'
-import Slider from '../layout/Slider'
 
 export default function Home() {
 
@@ -16,8 +15,8 @@ export default function Home() {
         if(!userData.user) history.push("/login")
     },[userData])
 
-    function getBooks() {
-        Axios.get('/api/books/')
+    function getMyBooks() {
+        Axios.get('/api/mybooks/all')
         .then((results) =>  {
             console.log(results)
             setBooks(results.data)
@@ -26,19 +25,17 @@ export default function Home() {
 
     useEffect(() => {
         //will only run once when component mounted
-        getBooks()
+        getMyBooks()
     },[])
 
-    const onSave = "() =>" 
 
 
     return (
         <div className="page">
             <PageTitle title={"Books101"} subtitle={"Dymocks Top 101 in 2020"}/>
-            <Slider books={books}/>
             <div className= "Row">
                 <div className="col">
-                    <BookList books={books} onSave={onSave}/>
+                    <BookList books={books}/>
                 </div>
             </div>
         </div>

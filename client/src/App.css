@@ -74,14 +74,14 @@ body {
 
 #page-header .auth-options button {
   padding: 0 1rem;
-  background-color: #0d076e;
+  background-color: #27a7c7;
   color: white;
   font-size: 1.1rem;
 }
 
 #page-header .auth-options button:hover {
   padding: 0 1rem;
-  background-color: #04022b;
+  background-color: #0d4452;
   color: white;
   font-size: 1.1rem;
 }
@@ -169,6 +169,7 @@ body {
   border-top: unset;
 }
 
+
 /* Page Title */
 .header {
   background-image: url(/Assets/Books.jpg) !important;
@@ -178,6 +179,39 @@ body {
   text-shadow: 2px 2px 4px #000000 !important;
   height: 300px;
   top: -100px
+}
+
+/* Slider */
+.slider-image {
+  background-size: cover;
+  margin-right: 10px !important;
+
+}
+
+.slider-text {
+  margin-left: 10px
+}
+
+.slider-text p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.slick-next:before {
+  color: black !important;
+}
+
+.slick-prev:before {
+  color: black !important;
+}
+
+.slick-track
+{
+    display: flex !important;
+}
+
+.slick-slide
+{
+    height: inherit !important;
 }
 
 
