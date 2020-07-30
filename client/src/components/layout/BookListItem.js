@@ -26,11 +26,15 @@ function BookListItem( { _id, id, title, description, link, author, image, posit
                             Save
                         </a>
                     )}
-                    {onDelete && (<a 
+                    {onDelete && (<i class="material-icons bookmark" 
                         className="waves-effect waves-light btn"
                         onClick={() => onDelete({_id})} 
-                        variant="danger">Remove</a>
+                        variant="danger">delete</i>
                     )}
+
+                    <i class="material-icons bookmark">bookmark_border</i>
+                    <i class="material-icons bookmark">favorite_border</i>
+                    <i class="material-icons bookmark">delete</i>
                 </div>
                 <div className="card-reveal">
                     <span className="card-title grey-text text-darken-4 flow-text"><i className="material-icons right">close</i>{title}</span>

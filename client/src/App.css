@@ -169,6 +169,12 @@ body {
   border-top: unset;
 }
 
+.material-icons {
+  font-size: 1.3rem;
+  color: rgb(41, 129, 145,);
+  margin: 0.5rem
+}
+
 
 /* Page Title */
 .header {
@@ -213,6 +219,7 @@ body {
 {
     height: inherit !important;
 }
+
 
 
 @media screen and (max-width: 600px) {
