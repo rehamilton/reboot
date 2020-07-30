@@ -19,7 +19,7 @@ export default function Home() {
     function getBooks() {
         Axios.get('/api/books/')
         .then((results) =>  {
-            console.log(results)
+
             setBooks(results.data)
         })
     }

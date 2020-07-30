@@ -7,6 +7,7 @@ import Header from './components/layout/Header'
 import './App.css'
 import UserContext from './context/UserContext'
 import Axios from 'axios'
+import MyBooks from './components/pages/MyBooks'
 
 export default function App() {
 
@@ -49,6 +50,7 @@ export default function App() {
             <Route exact path='/' component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
+            <Route path='/my' component={MyBooks} />
           </Switch>
           </div>
         </UserContext.Provider>

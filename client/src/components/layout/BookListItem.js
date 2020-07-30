@@ -18,7 +18,7 @@ function BookListItem( { _id, id, title, description, link, author, image, posit
                     <span className="card-title activator grey-text text-darken-4">{title}<i className="material-icons right">more_vert</i></span>
                 </div>
                 <div className = "card-action">
-                    <a href={link} target="_blank">More Info</a>
+                    <a href={link} target="_blank">Buy</a>
                     {onSave && (
                         <a 
                         className="waves-effect waves-light btn" 
@@ -32,9 +32,9 @@ function BookListItem( { _id, id, title, description, link, author, image, posit
                         variant="danger">delete</i>
                     )}
 
-                    <i class="material-icons bookmark">bookmark_border</i>
-                    <i class="material-icons bookmark">favorite_border</i>
-                    <i class="material-icons bookmark">delete</i>
+                    <i className="material-icons bookmark">check</i>
+                    <i className="material-icons bookmark">bookmark_border</i>
+                    <i className="material-icons bookmark">delete</i>
                 </div>
                 <div className="card-reveal">
                     <span className="card-title grey-text text-darken-4 flow-text"><i className="material-icons right">close</i>{title}</span>

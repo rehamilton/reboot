@@ -4,9 +4,6 @@ import SliderContent from './SliderContent'
 
 export default function SimpleSlider ({books}) {
 
-
-    console.log("books", books);
-
     const settings = {
       dots: true,
       infinite: true,
