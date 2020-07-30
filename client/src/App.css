@@ -175,6 +175,18 @@ body {
   margin: 0.5rem
 }
 
+.card-image {
+  width: 100%;
+}
+
+.card-content {
+  width: 100%;
+}
+
+.card-action {
+  width: 100%;
+}
+
 
 /* Page Title */
 .header {
