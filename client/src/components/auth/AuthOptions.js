@@ -21,7 +21,7 @@ export default function AuthOptions() {
     }
 
     return (
-        <nav className="auth-options">
+        <div className="auth-options">
             {userData.user ? (
                 <button onClick={logout}>Log Out</button>
             ) : (
@@ -30,6 +30,6 @@ export default function AuthOptions() {
                     <button onClick={login}>Log In</button>
                 </>
             )}
-        </nav>
+        </div>
     )
 }

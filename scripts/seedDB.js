@@ -1,5 +1,5 @@
 let mongoose = require("mongoose");
-let Book = require("../models/books");
+let Book = require("../models/bookModel");
 
 mongoose.connect("mongodb://localhost/books101", {
   useNewUrlParser: true,
@@ -30,7 +30,7 @@ let bookSeed = [
   {
     year: "2020",
     position: "3",
-    title: "Boy Swallows Univers",
+    title: "Boy Swallows Universe",
     author: ["Trent Dalton"],
     category: ["Fiction", "Modern & Contemporary", "General Fiction"],
     description: "The bestselling novel that has taken Australia, and the world, by storm. 'Without exaggeration, the best Australian novel I have read in more than a decade ... A rollicking ride, rich in philosophy, wit, truth and pathos' Sydney Morning Herald Brisbane, 1983: A lost father, a mute brother, a mum in jail, a heroin dealer for a stepfather and a notorious crim for a babysitter. It's not as if Eli's life isn't complicated enough already. He's just trying to follow his heart, learning what it takes to be a good man, but life just keeps throwing obstacles in the way - not least of which is Tytus Broz, legendary Brisbane drug dealer. But Eli's life is about to get a whole lot more serious. He's about to fall in love. And, oh yeah, he has to break into Boggo Road Gaol on Christmas Day, to save his mum. A story of brotherhood, true love and the most unlikely of friendships, Boy Swallows Universe will be the most heartbreaking, joyous and exhilarating novel you will read all year - an instant Australian classic.",

@@ -21,7 +21,8 @@ if (process.env.NODE_ENV === "production") {
 
 //Set up routes middleware - AUTH
 app.use("/users", require("./routes/userRouter"))
-app.use("/todos", require("./routes/todoRouter"))
+app.use("/books", require("./routes/bookRouter"))
+app.use("/mybooks", require("./routes/mybookRouter"))
 
 // Send every request to the React app
 // Define any API routes before this runs
