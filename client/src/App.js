@@ -24,10 +24,10 @@ export default function App() {
         token = ""
       }
 
-      const tokenRes = await Axios.post("/users/tokenIsValid", null, {headers: {"x-auth-token": token}})
+      const tokenRes = await Axios.post("/api/users/tokenIsValid", null, {headers: {"x-auth-token": token}})
       
       if(tokenRes.data) {
-        const userRes = await Axios.get("/users/", {headers: {"x-auth-token": token}})
+        const userRes = await Axios.get("/api/users/", {headers: {"x-auth-token": token}})
         setUserData({
           token,
           user: userRes.data

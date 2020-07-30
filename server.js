@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const apiRoutes = require('./routes')
 
 //add additional reuires - AUTH
 const mongoose = require("mongoose");
@@ -19,10 +20,8 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-//Set up routes middleware - AUTH
-app.use("/users", require("./routes/userRouter"))
-app.use("/books", require("./routes/bookRouter"))
-app.use("/mybooks", require("./routes/mybookRouter"))
+//Set up routes middleware 
+app.use('/api', apiRoutes)
 
 // Send every request to the React app
 // Define any API routes before this runs
@@ -35,7 +34,7 @@ app.listen(PORT, function() {
 });
 
 
-//setup mongoose - AUTH
+//setup mongoose 
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/books101", {
   useNewUrlParser: true,

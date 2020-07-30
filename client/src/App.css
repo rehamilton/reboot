@@ -158,6 +158,7 @@ body {
 .position-badge {
   font-size: 2rem;
   text-align: center;
+  color: red;
 }
 
 .card p {
@@ -166,6 +167,17 @@ body {
 
 .card .card-action {
   border-top: unset;
+}
+
+/* Page Title */
+.header {
+  background-image: url(/Assets/Books.jpg) !important;
+  background-size: cover;
+  color: white !important;
+  font-size: 5vw !important;
+  text-shadow: 2px 2px 4px #000000 !important;
+  height: 300px;
+  top: -100px
 }
 
 

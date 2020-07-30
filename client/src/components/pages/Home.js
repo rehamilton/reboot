@@ -16,7 +16,7 @@ export default function Home() {
     },[userData])
 
     function getBooks() {
-        Axios.get('/books/')
+        Axios.get('/api/books/')
         .then((results) =>  {
             console.log(results)
             setBooks(results.data)
@@ -31,7 +31,7 @@ export default function Home() {
 
     return (
         <div className="page">
-            <PageTitle title={"Books101"} />
+            <PageTitle title={"Books101"} subtitle={"Dymocks Top 101 in 2020"}/>
             <div className= "Row">
                 <div className="col">
                     <BookList books={books}/>
