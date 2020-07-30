@@ -25,12 +25,12 @@ export default function Home() {
             const newUser = { email, password, passwordCheck, displayName }
     
             await Axios.post(
-                "http://localhost:3000/users/register", 
+                "/users/register", 
                 newUser
             )
             
             const loginRes = await Axios.post(
-                "http://localhost:3000/users/login", {
+                "/users/login", {
                     email, 
                     password,
             });

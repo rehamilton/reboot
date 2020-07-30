@@ -36,13 +36,13 @@ app.listen(PORT, function() {
 
 //setup mongoose - AUTH
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/authTest", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/books101", {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true
 });
 
-var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/authTest';
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/books101';
 
 mongoose.connect(MONGODB_URI)
 
