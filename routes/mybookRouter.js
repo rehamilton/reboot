@@ -2,67 +2,74 @@ const express = require('express');
 const router = express.Router();
 const MyBook = require('../models/myBookModel')
 const auth = require("../middleware/auth")
+const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose');
 
 
 router.get("/all", auth, async (req, res) => {
 
-    const myBooks = await MyBook.find({userId: req.user})
+    const myBooks = await MyBook.find({userId: req.user}).populate("book")
     res.json(myBooks)
 
 })
 
-router.post("/", auth, async (req, res) => {
-
-    try{
-
-        //need to change this to reflect id from target
-        const {bookId} = req.body.id
-
-        //validation - check the user doesn't already have book saved
-        // if() 
-            // return res.status(400).json({msg: "Not all fields have been entered."})
-
-        const newMyBook = new MyBook({
-            bookId,
-            userId: req.user
-        })
-
-        const savedMyBook = await newMyBook.save()
-        res.json(savedMyBook)
-
-    }catch(err) {
-        res.status(500).json({error: err.message})
-    }
-
-})
-
-router.delete("/:id", auth, async (req, res) => {
-
-    const myBook = await MyBook.findOne({userId: req.user, _id: req.params.id})
-
-    if(!myBook)
-        return res.status(400).json({msg: "No book found with this id that belongs to current user."})
-    
-    const deletedMyBook = await MyBook.findByIdAndDelete(req.params.id)
-    res.json(deletedMyBook)
-})
-
-router.post("/:id", auth, async (req, res) => {
+router.delete("/:id/delete", auth, async (req, res) => {
 
     try {
 
-        const myBook = await MyBook.findOneAndUpdate({userId: req.user, _id: req.params.id}, req.body)
+        const userId = mongoose.Types.ObjectId(req.user)
+        const bookId = mongoose.Types.ObjectId(req.params.id)
 
-        if(!myBook)
-            return res.status(400).json({msg: "No book found with this id that belongs to current user."})
+        const deletedBook = await MyBook.findOneAndDelete({bookId: bookId, userId: userId })
 
-        res.json(myBook)
+        res.json(deletedBook);
 
     }catch(err) {
         res.status(500).json({error: err.message})
     }
+})
 
+
+router.post('/:id/save', async (req, res) => {
+    try {
+
+        const token = req.body.token
+        const verified = jwt.verify(token, process.env.JWT_SECRET)
+
+        if (!verified) return res.json(false)
+
+        console.log({verified});
+        console.log(verified.id);
+        console.log("this:" + req.params.id);
+        const userId = mongoose.Types.ObjectId(verified.id)
+        const bookId = mongoose.Types.ObjectId(req.params.id)
+
+    
+        const myBook = await MyBook.findOne({
+            userId: userId, 
+            bookId: bookId
+        }).catch((err) => {
+            console.log(err);
+        })
+
+        console.log({myBook});
+        if(myBook)
+            return res.status(400).json({msg: "You have already saved the book"})
+        
+        const newBook = new MyBook({
+            userId: userId,
+            bookId: bookId
+        })
+
+        const saved = await newBook.save();
+
+        res.json(saved);
+
+    }catch(err) {
+        res.status(500).json({error: err.message})
+    }
 })
 
 
 module.exports = router
+ 

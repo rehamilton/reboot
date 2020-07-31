@@ -17,9 +17,14 @@ export default function My() {
     },[userData])
 
     function getBooks() {
-        Axios.get('/api/mybooks/')
+        Axios.get('/api/mybooks/all', {
+            headers: {
+                'x-auth-token' : localStorage.getItem('auth-token')
+            }
+        })
         .then((results) =>  {
-            setBooks(results.data)
+     
+            setBooks(results.data.map((savedBook) => savedBook.book))
         })
     }
 
@@ -28,16 +33,27 @@ export default function My() {
         getBooks()
     },[])
 
-    const onSave = "() =>" 
+    const onDelete = ({ _id }) => {
+        console.log("that" + _id)
+        Axios.delete('/api/mybooks/' + _id +  '/delete', {
+            headers: {
+                'x-auth-token' : localStorage.getItem('auth-token')
+            }
+        })
+        .then((res) => {
+            const deletedBook = res.data;
+            console.log({deletedBook});
+        })
+    } 
 
 
     return (
         <div className="page">
-            <PageTitle title={"Books101"} subtitle={"Dymocks Top 101 in 2020"}/>
+            <PageTitle title={"Your Books"} subtitle={"Your saved books"}/>
             <Slider books={books}/>
             <div className= "Row">
                 <div className="col">
-                    <BookList books={books} onSave={onSave}/>
+                    <BookList books={books} onDelete={onDelete}/>
                 </div>
             </div>
         </div>

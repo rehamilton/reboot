@@ -69,7 +69,7 @@ body {
 }
 
 #page-header .title-main {
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin: 0;
   padding: 0 1rem;
   color: white;
@@ -206,7 +206,7 @@ body {
   background-image: url(/Assets/Books.jpg) !important;
   background-size: cover;
   color: white !important;
-  font-size: 5vw !important;
+  font-size: 2rem !important;
   text-shadow: 2px 2px 4px #000000 !important;
   height: 300px;
   top: -100px

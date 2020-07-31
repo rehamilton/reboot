@@ -1,8 +1,11 @@
 import React from 'react';
 import BookListItem from './BookListItem';
+import UserContext from '../../context/UserContext'
 
-function BookList({ books, onDelete }) {
+function BookList({ books, onSave, onDelete }) {
 
+
+    console.log({books});
 
 
     return(
@@ -12,7 +15,7 @@ function BookList({ books, onDelete }) {
                 <div className="card-panel blue-grey">
                     <div className = "row flex">
                         {books.map((book) => (
-                            <BookListItem key={book.id || book._id} {...book} onDelete={onDelete} />
+                            <BookListItem key={book.id || book._id} {...book} onSave={onSave} onDelete={onDelete}/>
                         ))}
                     </div>
                 </div>

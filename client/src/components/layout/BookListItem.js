@@ -2,9 +2,8 @@ import React from 'react';
 
 
 
-function BookListItem( { _id, id, title, description, link, author, image, position, onSave, onDelete }) {
+function BookListItem( { _id, image, author, description, position, title, link, onSave, onDelete}) {
 
-    
 
     return( 
 
@@ -20,21 +19,13 @@ function BookListItem( { _id, id, title, description, link, author, image, posit
                 <div className = "card-action">
                     <a href={link} target="_blank">Buy</a>
                     {onSave && (
-                        <a 
-                        className="waves-effect waves-light btn" 
-                        onClick={() => {onSave({_id})}}>
-                            Save
-                        </a>
+                        <i 
+                        className="far fa-bookmark" 
+                        onClick={() => {onSave({_id})}}></i>
                     )}
-                    {onDelete && (<i class="material-icons bookmark" 
-                        className="waves-effect waves-light btn"
-                        onClick={() => onDelete({_id})} 
-                        variant="danger">delete</i>
+                    {onDelete && (<i className="fas fa-trash"
+                        onClick={() => {onDelete({_id})}}></i>
                     )}
-
-                    <i className="material-icons bookmark">check</i>
-                    <i className="material-icons bookmark">bookmark_border</i>
-                    <i className="material-icons bookmark">delete</i>
                 </div>
                 <div className="card-reveal">
                     <span className="card-title grey-text text-darken-4 flow-text"><i className="material-icons right">close</i>{title}</span>

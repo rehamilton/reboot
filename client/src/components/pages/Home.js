@@ -29,13 +29,22 @@ export default function Home() {
         getBooks()
     },[])
 
-    const onSave = "() =>" 
+    const onSave = ({_id }) => {
+        Axios.post('/api/mybooks/' + _id +  '/save', {
+            token: localStorage.getItem('auth-token')
+        })
+        .then((res) => {
+            const newBook = res.data;
+            console.log({newBook});
+        })
+    }
 
 
     return (
         <div className="page">
             <PageTitle title={"MUST READS 2020"} subtitle={"Dymocks Top 101"}/>
             <Slider books={books}/>
+            
             <div className= "Row">
                 <div className="col">
                     <BookList books={books} onSave={onSave}/>
