@@ -2,12 +2,7 @@ import React from 'react';
 import BookListItem from './BookListItem';
 import UserContext from '../../context/UserContext'
 
-function BookList({ readBooks, books, onSave}) {
-
-
-
-    var readBookIds = readBooks.map(b => b.bookId);
-
+function MyBookList({ readBooks, books, onDelete, onRead }) {
 
     return(
 
@@ -16,16 +11,15 @@ function BookList({ readBooks, books, onSave}) {
                 <div className="card-panel blue-grey">
                     <div className = "row flex">
                         {books.map((book) => (
-                            <BookListItem key={book.id || book._id} read = {readBookIds.includes(book._id)} {...book} onSave={onSave} />
+                            <BookListItem key={book.id || book._id} {...book} onDelete={onDelete} onRead={onRead} />
                         ))}
                     </div>
                 </div>
             </div>
         </div>
 
-
     )
 
 }
 
-export default BookList
+export default MyBookList

@@ -29,6 +29,36 @@ router.delete("/:id/delete", auth, async (req, res) => {
     }
 })
 
+router.put('/:id/read', async (req, res) => {
+
+    try{
+
+        const token = req.body.token
+        const verified = jwt.verify(token, process.env.JWT_SECRET)
+
+        if (!verified) return res.json(false)
+
+        console.log({verified});
+        console.log(verified.id);
+        console.log("this:" + req.params.id);
+        const userId = mongoose.Types.ObjectId(verified.id)
+        const bookId = mongoose.Types.ObjectId(req.params.id)
+
+        const filter = {bookId: bookId, userId: userId}
+        const update = {read: true}
+
+        const readBook = await MyBook.updateOne(filter, update, {
+            new: true
+        })
+
+        res.json(readBook);
+
+    }catch(err) {
+        res.status(500).json({error: err.message})
+    }
+
+})
+
 
 router.post('/:id/save', async (req, res) => {
     try {

@@ -11,9 +11,11 @@ export default function Home() {
     const {userData} = useContext(UserContext)
     const history = useHistory()
     const[books, setBooks] = useState([])
+    const[myBooks, setMyBooks] = useState([])
 
     useEffect(() => {
-        if(!userData.user) history.push("/login")
+        let token = localStorage.getItem('auth-token')
+        if(!token) history.push("/login")
     },[userData])
 
     function getBooks() {
@@ -24,9 +26,22 @@ export default function Home() {
         })
     }
 
+    function getMyBooks() {
+        Axios.get('/api/mybooks/all', {
+            headers: {
+                'x-auth-token' : localStorage.getItem('auth-token')
+            }
+        })
+        .then((results) =>  {
+     
+            setMyBooks(results.data)
+        })
+    }
+
     useEffect(() => {
         //will only run once when component mounted
         getBooks()
+        getMyBooks()
     },[])
 
     const onSave = ({_id }) => {
@@ -47,7 +62,7 @@ export default function Home() {
             
             <div className= "Row">
                 <div className="col">
-                    <BookList books={books} onSave={onSave}/>
+                    <BookList books={books} readBooks={myBooks.filter(x => x.read)} onSave={onSave}/>
                 </div>
             </div>
         </div>

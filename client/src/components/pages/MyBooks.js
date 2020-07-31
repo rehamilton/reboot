@@ -2,9 +2,10 @@ import React, {useState, useEffect, useContext} from 'react'
 import UserContext from '../../context/UserContext'
 import {useHistory} from 'react-router-dom'
 import Axios from 'axios'
-import BookList from '../layout/BookList'
+import MyBookList from '../layout/MyBookList'
 import PageTitle from '../layout/PageTitle'
 import Slider from '../layout/Slider'
+
 
 export default function My() {
 
@@ -13,7 +14,8 @@ export default function My() {
     const[books, setBooks] = useState([])
 
     useEffect(() => {
-        if(!userData.user) history.push("/login")
+        let token = localStorage.getItem('auth-token')
+        if(!token) history.push("/login")
     },[userData])
 
     function getBooks() {
@@ -43,8 +45,20 @@ export default function My() {
         .then((res) => {
             const deletedBook = res.data;
             console.log({deletedBook});
+            getBooks()
         })
     } 
+
+    const onRead = ({_id}) => {
+        Axios.put('/api/mybooks/' + _id +  '/read', {
+            token: localStorage.getItem('auth-token')
+        })
+        .then((res) => {
+            const isReadBook = res.data;
+            console.log({isReadBook});
+        })
+
+    }
 
 
     return (
@@ -53,7 +67,7 @@ export default function My() {
             <Slider books={books}/>
             <div className= "Row">
                 <div className="col">
-                    <BookList books={books} onDelete={onDelete}/>
+                    <MyBookList books={books} onDelete={onDelete} onRead={onRead} />
                 </div>
             </div>
         </div>

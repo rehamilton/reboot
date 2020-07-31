@@ -48,9 +48,9 @@ export default function App() {
           <div className="container">
           <Switch>
             <Route exact path='/' component={Home} />
+            <Route path='/my' component={MyBooks} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
-            <Route path='/my' component={MyBooks} />
           </Switch>
           </div>
         </UserContext.Provider>

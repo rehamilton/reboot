@@ -200,6 +200,19 @@ body {
   width: 100%;
 }
 
+.card-icon {
+  margin: 5px;
+  margin-left: 20px;
+}
+
+.image-opaque {
+  opacity: 10%;
+}
+
+.text-strikethru {
+  text-decoration: line-through;
+}
+
 
 /* Page Title */
 .header {
