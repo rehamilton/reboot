@@ -47,9 +47,32 @@ router.put('/:id/read', async (req, res) => {
         const filter = {bookId: bookId, userId: userId}
         const update = {read: true}
 
-        const readBook = await MyBook.updateOne(filter, update, {
-            new: true
-        })
+        const existingBook = await MyBook.findOne(filter)
+
+        if(existingBook) {
+
+            const readBook = await MyBook.updateOne(filter, update, {
+                new: true
+            })
+    
+            res.json(readBook);
+
+        }
+
+        if(!existingBook) {
+
+            const newBook = new MyBook({
+                userId: userId,
+                bookId: bookId,
+                read: true
+            })
+
+            const saved = await newBook.save();
+
+            res.json(saved);
+
+        }
+
 
         res.json(readBook);
 

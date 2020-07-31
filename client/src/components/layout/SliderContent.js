@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-function SliderContent({ image, author, link, title, description, position, year }) {
+function SliderContent({ image, author, link, title, description, position, year, read }) {
 
 
 
@@ -14,7 +14,11 @@ function SliderContent({ image, author, link, title, description, position, year
             <div className= "row">
                 <div className="container col m3">
                     <a href={link} target="_blank">
-                        <img className = "slider-image" src={image} alt= {title}/>
+                        {read ? (
+                            <img className="slider-image isRead image-opaque" src={image} alt={title}/>
+                        ) : (
+                            <img className = "slider-image" src={image} alt= {title}/>
+                        )}
                     </a>
                 </div>
                 <div className="container col s2 m1"></div>

@@ -79,7 +79,7 @@ export default function My() {
     return (
         <div className="page">
             <PageTitle title={"Your Books"} subtitle={"Your saved books"}/>
-            <Slider books={books}/>
+            <Slider books={books} readBooks={myBooks.filter(x => x.read)}/>
             <div className= "Row">
                 <div className="col">
                     <BookList books={books} readBooks={myBooks.filter(x => x.read)} onDelete={onDelete} onRead={onRead} />

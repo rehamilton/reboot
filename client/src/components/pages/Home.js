@@ -53,14 +53,26 @@ export default function Home() {
         })
     }
 
+    const onRead = ({_id}) => {
+        Axios.put('/api/mybooks/' + _id +  '/read', {
+            token: localStorage.getItem('auth-token')
+        })
+        .then((res) => {
+            const isReadBook = res.data;
+
+            getBooks()
+            getMyBooks()
+        })
+    }
+
     return (
         <div className="page">
             <PageTitle title={"MUST READS 2020"} subtitle={"Dymocks Top 101"}/>
-            <Slider books={books}/>
+            <Slider books={books} readBooks={myBooks.filter(x => x.read)}/>
             
             <div className= "Row">
                 <div className="col">
-                    <BookList books={books} readBooks={myBooks.filter(x => x.read)} onSave={onSave}/>
+                    <BookList books={books} readBooks={myBooks.filter(x => x.read)} onSave={onSave} onRead={onRead}/>
                 </div>
             </div>
         </div>
