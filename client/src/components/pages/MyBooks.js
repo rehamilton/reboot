@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import UserContext from '../../context/UserContext'
 import {useHistory} from 'react-router-dom'
 import Axios from 'axios'
-import MyBookList from '../layout/MyBookList'
+import BookList from '../layout/BookList'
 import PageTitle from '../layout/PageTitle'
 import Slider from '../layout/Slider'
 
@@ -12,6 +12,7 @@ export default function My() {
     const {userData} = useContext(UserContext)
     const history = useHistory()
     const[books, setBooks] = useState([])
+    const[myBooks, setMyBooks] = useState([])
 
     useEffect(() => {
         let token = localStorage.getItem('auth-token')
@@ -30,9 +31,22 @@ export default function My() {
         })
     }
 
+    function getMyBooks() {
+        Axios.get('/api/mybooks/all', {
+            headers: {
+                'x-auth-token' : localStorage.getItem('auth-token')
+            }
+        })
+        .then((results) =>  {
+     
+            setMyBooks(results.data)
+        })
+    }
+
     useEffect(() => {
         //will only run once when component mounted
         getBooks()
+        getMyBooks()
     },[])
 
     const onDelete = ({ _id }) => {
@@ -44,8 +58,9 @@ export default function My() {
         })
         .then((res) => {
             const deletedBook = res.data;
-            console.log({deletedBook});
+
             getBooks()
+            getMyBooks()
         })
     } 
 
@@ -55,11 +70,11 @@ export default function My() {
         })
         .then((res) => {
             const isReadBook = res.data;
-            console.log({isReadBook});
+
+            getBooks()
+            getMyBooks()
         })
-
     }
-
 
     return (
         <div className="page">
@@ -67,7 +82,7 @@ export default function My() {
             <Slider books={books}/>
             <div className= "Row">
                 <div className="col">
-                    <MyBookList books={books} onDelete={onDelete} onRead={onRead} />
+                    <BookList books={books} readBooks={myBooks.filter(x => x.read)} onDelete={onDelete} onRead={onRead} />
                 </div>
             </div>
         </div>

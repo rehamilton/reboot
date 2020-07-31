@@ -1,10 +1,7 @@
 import React from 'react';
 
-
-
 function BookListItem( { _id, image, author, description, position, title, link, onSave, onDelete, read, onRead}) {
 
-    console.log(read)
 
     return( 
 

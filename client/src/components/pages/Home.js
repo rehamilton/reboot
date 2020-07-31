@@ -50,10 +50,8 @@ export default function Home() {
         })
         .then((res) => {
             const newBook = res.data;
-            console.log({newBook});
         })
     }
-
 
     return (
         <div className="page">
