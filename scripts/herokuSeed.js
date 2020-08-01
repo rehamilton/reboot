@@ -1,6 +1,5 @@
 [
 {
-
   "year" : "2020",
   "position" : "1",
   "title" : "Eleanor Oliphant is Completely Fine",
@@ -542,8 +541,7 @@
   "position" : "30",
   "title" : "The Scolar",
   "author" : [ 
-      "Dervla McTiernan"
-  ],
+      "Dervla McTiernan"  ],
   "category" : [ 
       "Fiction", 
       "Ccrime", 

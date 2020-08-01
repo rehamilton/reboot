@@ -68,7 +68,7 @@ export default function Home() {
     return (
         <div className="page">
             <PageTitle title={"MUST READS 2020"} subtitle={"Dymocks Top 101"}/>
-            <Slider books={books} readBooks={myBooks.filter(x => x.read)}/>
+            <Slider books={books} readBooks={myBooks.filter(x => x.read)} onSave={onSave} onRead={onRead}/>
             
             <div className= "Row">
                 <div className="col">

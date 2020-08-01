@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-function SliderContent({ image, author, link, title, description, position, year, read }) {
+function SliderContent({ _id, image, author, link, title, description, position, year, read, onSave, onDelete, onRead }) {
 
 
 
@@ -27,6 +27,17 @@ function SliderContent({ image, author, link, title, description, position, year
                         <h5>{title}</h5>
                         <p>Position: {position}</p>
                         <p>{description}</p>
+                        {onSave && (
+                            <i 
+                            className="card-icon far fa-bookmark" 
+                            onClick={() => {onSave({_id})}}></i>
+                        )}
+                        {onDelete && (<i className="card-icon fas fa-trash"
+                            onClick={() => {onDelete({_id})}}></i>
+                        )}
+                        {onRead && (<i className="card-icon fas fa-book-reader"
+                            onClick={() => {onRead({_id})}}></i>
+                        )}
                     </div>
                 </div>
             </div>
